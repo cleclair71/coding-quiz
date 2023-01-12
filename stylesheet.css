@@ -1,5 +1,8 @@
 /* View High Scores */
-
+.question {
+    display: none;
+  }
+  
 #timer {
     position: absolute;
     top: 10px;
