@@ -4,19 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
     <link rel="stylesheet" href="./stylesheet.css">
     <title>Coding Quiz</title>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <a id="highscores" href="highscore.html">View high scores</a>
-            <div id="timer">Time:0</div>
-        </nav>
-    </header>
-    <main>
-        <div class="question" id="startingpage">
+            <a class="highscores" href="highscore.html">View Highscores</a>
+            <div class="timer">Time: <span id="time">0</span></div>
+    <main class="quizcontent">
+        <div class="startpage" id="startingpage">
             <h1>Coding Quiz</h1>
             <p>
                 Try to answer the following code-related questions within the
@@ -26,55 +23,8 @@
             <button id="start-timer-btn">Start Quiz</button>
         </div>
         <div class="question" id="question2">
-            <h1>Commonly used data types DO Not Include:</h1>
-            <p>
-                <button id="strings-btn">1. strings</button> <br>
-                <button id="booleans-btn">2. booleans</button> <br>
-                <!-- alert right answer -->
-                <button id="alerts-btn">3. alerts</button> <br>
-                <button id="numbers-btn">4. numbers</button> <br>
-            </p>
-        </div>
-        <div class="question" id="question3">
-            <h1>The Condition in an if / else statement is enclosed with _______.</h1>
-            <p>
-                <button id="quotes-btn">1. qoutes</button> <br>
-                <button id="curly-btn">2. curly brackets</button> <br>
-                <!-- parenthesis -->
-                <button id="parenthesis-btn">3. parenthesis</button> <br>
-                <button id="square-btn">4. square brackets</button> <br>
-            </p>
-        </div>
-        <div class="question" id="question4">
-            <h1>String values must be enclosed within _____ when being assigned to variables.</h1>
-            <p>
-                <button id="commas-btn">1. commas</button> <br>
-                <button id="curly2-btn">2. curly brackets</button> <br>
-                <!-- quotes -->
-                <button id="quotes2-btn">3. quotes</button> <br>
-                <button id="parenthesis2-btn">4. parenthesis</button> <br>
-            </p>
-        </div>
-        <div class="question" id="question5">
-            <h1>A very useful tool used during development and 
-                debugging for printing content to the debugger is:</h1>
-            <p>
-                <button id="JS-btn">1. JavaScript</button> <br>
-                <button id="bash-btn">2. terminal/bash</button> <br>
-                <button id="loops-btn">3. for loops</button> <br>
-                <!-- console.log -->
-                <button id="console-btn">4. console.log</button> <br>
-            </p>
-        </div>
-        <div class="question" id="question6">
-            <h1>Arrays in JavaScript can be used to store:</h1>
-            <p>
-                <button id="n&s-btn">1. numbers and strings</button> <br>
-                <button id="other-btn">2. other arrays</button> <br>
-                <button id="bool-btn">3. booleans</button> <br>
-                <!-- console.log -->
-                <button id="above-btn">4. all of the above</button> <br>
-            </p>
+            
+           
         </div>
         <div class="question" id="alldone">
             <h1>All done!</h1>

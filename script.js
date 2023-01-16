@@ -1,5 +1,46 @@
+//Question list
+var quizQuestions = [
+  {
+    titleQuestion: 'Commonly used data types DO Not Include:'
+    options: ['strings', 'booleans', 'alerts', 'numbers'],
+    answer: 'alerts',
+  }, 
+  {
+    titleQuestion: 'The Condition in an if / else statement is enclosed with _______.'
+    options: ['quotes', 'curly brackets', 'parentheses', 'square brackets'],
+    answer: 'parentheses',
+  }, 
+  {
+    titleQuestion: 'A very useful tool used during development and debugging for printing content to the debugger is:'
+    options: ['JavaScript', 'terminal/bash', 'for loops', 'console.log'],
+    answer: 'console.log',
+  }, 
+  {
+    titleQuestion: 'String values must be enclosed within _____ when being assigned to variables.'
+    options: ['commas', 'curly brackets', 'quotes', 'parentheses'],
+    answer: 'quotes',
+  }, 
+  {
+    titleQuestion: 'Arrays in JavaScript can be used to store:'
+    options: ['numbers and strings', 'other arrays', 'booleans', 'all of the above'],
+    answer: 'all of the above',
+  }, 
+];
+
+//variables
 let score = 0;
 let highScores = [];
+var questions = document.getElementById('quizQuestions');
+var options1 = document.getElementById('options');
+var startBtn = document.getElementById('start-timer-btn');
+var timer1 = document.getElementById('time');
+var submit1 = document.getElementById('submit-btn');
+var initials1 = document.getElementById('initials')
+var responsePrompt = document.getElementById('response');
+
+
+
+
 
 // function to store quiz results in local storage
 function storeQuizResults(results) {
@@ -64,6 +105,26 @@ startTimerBtn.addEventListener("click", function () {
   // elements.forEach(function(element){
   //   element.style.display = "none";
   // });
+  let rightAnswerBtn = document.getElementById("rightAnswerBtn");
+rightAnswerBtn.addEventListener("click", function(){
+    score += 1;
+    highScores.push(score);
+    document.getElementById("question4").style.display = "block";
+    document.querySelectorAll("#startingpage, #question2, #alldone, #question2, #question3, #question5, #question6").forEach(function(element){
+        element.style.display = "none";
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 //QUESTION 2 - add event listener to right answer
