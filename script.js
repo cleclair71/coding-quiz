@@ -1,27 +1,27 @@
 //Question list
 var quizQuestions = [
   {
-    titleQuestion: 'Commonly used data types DO Not Include:'
+    headerQuestion: 'Commonly used data types DO Not Include:'
     options: ['strings', 'booleans', 'alerts', 'numbers'],
     answer: 'alerts',
   }, 
   {
-    titleQuestion: 'The Condition in an if / else statement is enclosed with _______.'
+    headerQuestion: 'The Condition in an if / else statement is enclosed with _______.'
     options: ['quotes', 'curly brackets', 'parentheses', 'square brackets'],
     answer: 'parentheses',
   }, 
   {
-    titleQuestion: 'A very useful tool used during development and debugging for printing content to the debugger is:'
+    headerQuestion: 'A very useful tool used during development and debugging for printing content to the debugger is:'
     options: ['JavaScript', 'terminal/bash', 'for loops', 'console.log'],
     answer: 'console.log',
   }, 
   {
-    titleQuestion: 'String values must be enclosed within _____ when being assigned to variables.'
+    headerQuestion: 'String values must be enclosed within _____ when being assigned to variables.'
     options: ['commas', 'curly brackets', 'quotes', 'parentheses'],
     answer: 'quotes',
   }, 
   {
-    titleQuestion: 'Arrays in JavaScript can be used to store:'
+    headerQuestion: 'Arrays in JavaScript can be used to store:'
     options: ['numbers and strings', 'other arrays', 'booleans', 'all of the above'],
     answer: 'all of the above',
   }, 
@@ -30,16 +30,92 @@ var quizQuestions = [
 //variables
 let score = 0;
 let highScores = [];
+var time = questions.length = 10;
+var timerId;
 var questions = document.getElementById('quizQuestions');
 var options1 = document.getElementById('options');
+var header1 = document.getElementById('header-question');
 var startBtn = document.getElementById('start-timer-btn');
 var timer1 = document.getElementById('time');
 var submit1 = document.getElementById('submit-btn');
 var initials1 = document.getElementById('initials')
 var responsePrompt = document.getElementById('response');
+var quizEnd = document.getElementById('alldone');
+var currentQIndex = 0; // keeps tabs on current question
+var gameEnd = true; 
+var clearScores = document.getElementById('clear-btn');
+var goBack = document.getElementById('goback-btn');
+var currentQuestion = quizQuestions[currentQIndex];
+var timerPreset = 60;
+var timeLeft = timerPreset;
 
 
+function mainMenu() {
+  timeLeft = timerPreset;
+  timer1.textContent = timerPreset;
 
+}
+//   // Timer
+function countdown() = setInterval(function () {
+let 
+  countdown--;
+  document.getElementById("timer").innerHTML = countdown;
+  if (countdown <= 0) {
+    clearInterval(intervalId);
+    alert("Time's up!");
+    stopQuiz();
+  }
+}, 1000); 
+
+function quizStart() {
+
+}
+
+function nextQuestion() {
+var currentQuestion = quizQuestions[currentQIndex];
+var header1 = document.getElementById('header-question');
+header1.textContent = currentQuestion.headerQuestion,
+
+options1.innerHTML = '';
+
+// cycle through questions
+for (var i = 0; i < currentQuestion.options1.length; i++) {
+  var option = currentQuestion.options1[i];
+  var optionNode = document.createElement('button');
+  optionNode.setAttribute('class', 'choice');
+  optionNode.setAttribute('value', option);
+
+  optionNode.textContent = i + 1 + '. ' + option;
+
+  // show on page
+  options1.appendChild(optionNode);
+}
+
+
+}
+
+function clickQ(event) {
+  var 
+
+}
+
+function allDone() {
+// stop time
+clearInterval(timerId);
+// display alldone page
+var quizEnd = document.getElementById('alldone');
+quizEnd.removeAttribute('class');
+// show score
+var finalScore = document.getElementById('score');
+finalScore.textContent = time;
+// hide question divs
+options1.setAttribute('class', 'hide');
+
+}
+
+function saveResults() {
+
+}
 
 
 // function to store quiz results in local storage
@@ -78,17 +154,7 @@ document.getElementById("strings-btn").addEventListener("click", function() {
   showNextQuestion();
 });
 
-//   // Timer
-let countdown = 60;
-let intervalId = setInterval(function () {
-  countdown--;
-  document.getElementById("timer").innerHTML = countdown;
-  if (countdown <= 0) {
-    clearInterval(intervalId);
-    alert("Time's up!");
-    stopQuiz();
-  }
-}, 1000); 
+
 });
 // hide divs
 var elements = document.querySelectorAll("#startingpage, #alldone, #question3, #question4, #question5, #question6");
