@@ -68,11 +68,22 @@ let
 }, 1000); 
 
 function quizStart() {
+// hide all divs
+var startPage = document.getElementById('startingpage');
+startPage.setAttribute('class', 'hide');
 
+// reveal questions 
+questions.removeAttribute('class');
+// timer
+timerId = setInterval(timerPreset, 1000);
+// current time
+timer1.textContent = time;
 }
 
 function nextQuestion() {
+  //get the current question
 var currentQuestion = quizQuestions[currentQIndex];
+// Get header question
 var header1 = document.getElementById('header-question');
 header1.textContent = currentQuestion.headerQuestion,
 
@@ -80,6 +91,7 @@ options1.innerHTML = '';
 
 // cycle through questions
 for (var i = 0; i < currentQuestion.options1.length; i++) {
+  // create a button per choice
   var option = currentQuestion.options1[i];
   var optionNode = document.createElement('button');
   optionNode.setAttribute('class', 'choice');
@@ -90,14 +102,36 @@ for (var i = 0; i < currentQuestion.options1.length; i++) {
   // show on page
   options1.appendChild(optionNode);
 }
-
-
 }
 
 function clickQ(event) {
-  var 
+  var btnS = event.target;
 
+  if (!btnS.matches('.option')) {
+    return
+  }
+  if (!btnS.value !== questions[currentQIndex].answer) {
+    // take time away
+    time -= 10;
+
+    if (time < 0) {
+      time = 0;
+    }
+
+    timer1.textContent = time;
+
+    responsePrompt.textContent = 'Wrong Answer!';
+  } else {
+    responsePrompt.textContent = 'Correct Answer!';
+  }
+
+  responsePrompt.setAttribute('class', 'response');
+  setTimeout(function () {
+    responsePrompt.setAttribute('class', 'response hide');
+  }, 1000);
 }
+
+currentQIndex++;
 
 function allDone() {
 // stop time
@@ -116,6 +150,25 @@ options1.setAttribute('class', 'hide');
 function saveResults() {
 
 }
+
+function checkEnter(event) {
+
+}
+submit1.onclick = saveResults;
+
+startBtn.onclick = quizStart;
+options1.onclick = clickQ;
+initials1.onkeyup = checkEnter;
+
+
+
+
+
+
+
+
+
+
 
 
 // function to store quiz results in local storage
