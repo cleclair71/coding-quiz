@@ -50,13 +50,13 @@ header {
 
 }
 
-.show {
+/* .show {
     display: flex;
 }
 
 .hide {
     display: none;
-}
+} */
 
 .timer {
     font-size: 2.0rem;
