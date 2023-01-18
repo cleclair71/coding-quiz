@@ -1,41 +1,100 @@
 /* View High Scores */
-.question {
-    display: none;
+
+* 
+  :root {
+    --primary: #0a0808c5;
+    --secondary: #750891;
+    --tertiary: rgb(228, 55, 153);
+    --white: rgb(255, 255, 255);
+    font-size: 62.5%;
   }
-  
-#timer {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: black;
+
+  body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    padding: 20px;
+      flex-direction: column;
+      width: 50%;
+      margin: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  @keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+header {
+    display: flex;
+    justify-content: space-between; 
+    position: relative;
+}
+
+.highscores {
+    font-size: 2.0rem;
+    color: var(--primary);
+    align-self: flex-start;
+    text-decoration: none;
+}
+
+.highscores:hover {
+    text-shadow: 0 0 10px white;
+
+}
+
+.show {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}
+
+.timer {
+    font-size: 2.0rem;
+      color: var(--primary);
+      align-self: flex-start;
 }
 
 h1 {
+    color: var(--primary);
+    font-size: 3.0rem;
+    font-weight: bold;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+}
+.quizcontent {
+    border: 2px solid black;
+    box-sizing: border-box;
+    padding: 30px;
+    background-color: #FFFFFF;
 }
 /* starting page */
 .startingpage {
-    display: flex;
-    flex-direction: column;
-    position: relative;
     align-items: center;
-    justify-content: center;
-    width: 70%;
-    margin: 10%;
-    padding: 10%;
+    text-align: center;
     
 }
 
 p {
-    width: 50%;
-    margin: auto;
-  text-align:center;
-  display: flex;
-  align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
+    color: var(--primary);
+    font-size: 2.0rem;
     
 }
+#question-divs {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    margin: auto;
+  }
+
 button {
     background-color: initial;
       background-image: linear-gradient(rgba(182, 115, 212, 0.84), rgba(57, 31, 91, .84) 50%);
@@ -46,7 +105,7 @@ button {
       cursor: pointer;
       display: flex;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 18px;
+      font-size: 3.0vw;
       font-weight: 700;
       justify-content: center;
       letter-spacing: .04em;
@@ -70,63 +129,69 @@ button:hover {
     margin: auto;
     }
 
-/* Question 2 */
-#question2 {
-    display: block;
-    width: 80%;
-    padding-top: 100px;
-    margin: auto;
-    
+#question-divs button {
+    display: grid;
+      grid-template-rows: repeat(4, auto);
+      grid-gap: 5px;
+      margin: 20px 0;
 }
 
-#strings-btn,
-#booleans-btn,
-#alerts-btn,
-#numbers-btn {
-   
-}
-
-/* Question 3 */
-#question3 {}
-
-#quotes-btn,
-#curly-btn,
-#parenthesis-btn,
-#square-btn {}
-
-/* Question 4 */
-#question4 {}
-
-#commas-btn,
-#curly2-btn,
-#quotes2-btn,
-#parenthesis2-btn {}
-
-/* Question 5 */
-
-#JS-btn,
-#bash-btn,
-#loops-btn,
-#console-btn {}
-
-/* All done */
-#alldone {}
-
-input {}
-
-#submit-btn {
-
+#response {
+    font-size: 25px;
+    text-align: center;
+    color: rgba(199, 187, 187, 0.8);
+    font-style: italic;
+    margin: 0 100px;
+    border-top: 2px solid rgba(199, 187, 187, 0.8);
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 5px;
 }
 /* High scores */
+#high-score {
+    text-align: left;
+}
 
-#highscores {}
+ol {
+    list-style-type: number;
+ }
 
-#goback-btn,
-#clear-btn {}
+ li:nth-child(odd) {
+     background-color: rgba(228, 151, 164, 0.5);;
+ }
 
-@media (min-width: 768px) {
-    /* .button {
-      font-size: 21px;
-      padding: 18px 34px;
-    } */
-  }
+
+li {
+    font-size: 4.0vw;
+}
+
+/* media query for smaller screens */
+
+@media screen and (max-width: 1024px) {
+
+    .btn {
+        width: 100%;
+        font-size: 3.0vw;
+    }
+
+    #question {
+        font-size: 4.5vw;
+    }
+
+    h1 {
+        font-size: 4.5vw;
+    }
+
+    p {
+        font-size: 3.0vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .highscores {
+        font-size: 0.8rem;
+    }
+    .timer {
+        font-size: 0.8rem;
+    }
+}
