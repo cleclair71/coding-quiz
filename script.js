@@ -20,7 +20,8 @@ var goBack = document.getElementById('goback-btn');
 var hsBtn = document.getElementById('hs-btn')
 //Time
 var timer1 = document.getElementById('time');
-var timeLeft = 60
+var initialTime = 60;
+var timeLeft = initialTime;
 
 
 
@@ -60,10 +61,12 @@ var header1 = document.getElementById('header-question');
 
 var currentQIndex = 0; // keeps tabs on current question
 var currentQuestion = quizQuestions[currentQIndex];
-var time = questions.length * 10;
+// var time = questions.length * 10;
+var intervalid;
 
 //! This function starts the quiz
 function quizStart() {
+  debugger;
   // Get the starting page element and hide it
   var startPage = document.getElementById('startingpage');
   startPage.setAttribute('class', 'hide');
@@ -75,10 +78,10 @@ function quizStart() {
   q1.removeAttribute('class');
 
   // Set the timer to 60
-  timer1.textContent = 60;
+  timer1.textContent = initialTime;
 
   // Start the clock
-  timeLeft = setInterval(clockTime, 1000);
+  intervalid = setInterval(clockTime, 1000);
 
   // Log a click to the console
   console.log("click");
@@ -149,15 +152,15 @@ function clickQ(event) {
   // show response
   responsePrompt.setAttribute('class', 'response');
   // hide response after 1 sec
-  setTimeout(function () {
-    responsePrompt.setAttribute('class', 'response hide');
-  }, 1000);
+  // setTimeout(function () {
+  //   responsePrompt.setAttribute('class', 'response hide');
+  // }, 1000);
   
   // increment currentQIndex
   currentQIndex++;
 
   // check if time is up or all questions are answered
-  if (time <= 0 || currentQIndex === quizQuestions.length) {
+  if (timeLeft <= 0 || currentQIndex === quizQuestions.length) {
     //clear interval
     clearInterval(timeLeft);
     //go to final page
@@ -165,14 +168,14 @@ function clickQ(event) {
   } else {
     //go to next question
     nextQuestion(currentQIndex);
-    console.log("click");
+    console.log("nextquestion");
   }
 
 }
 //! This function is called when the quiz is completed or the time runs out
 function allDone() {
   //stops the time left countdown.
-  clearInterval(timeLeft);
+  // clearInterval(timeLeft);
   //gets the element with the id of alldone and assigns it to a variable allDonePage
   var allDonePage = document.getElementById('alldone');
   //removes the class of hide from the element allDonePage. This will make the element visible on the webpage.
@@ -180,25 +183,22 @@ function allDone() {
   // show score
   document.getElementById("scores").innerHTML = score;
   //sets the text content of the score variable to be the value of the timeLeft variable
-  score.textContent = timeLeft;
+  score.textContent = timeLeft + score;
 //sets the class of q1 to be hide
   q1.setAttribute('class', 'hide');
   console.log("click");
 }
 
 //! Timer
-var clockTime = function () {
-  //decrement the time variable by 1
-  time--;
-  //update the time displayed in the HTML
-  timer1.innerText = time;
-  
-  // check if the time has run out
-  if (time <= 0) {
-  // if so, call the allDone function
-  allDone();
+function clockTime() {
+  if (timeLeft <= 0) {
+    clearInterval(intervalId);
+    // do something here when time is up
+    return;
   }
-  }
+  timeLeft--;
+  timer1.textContent = timeLeft;
+}
   //! This function stores results
   function saveResults() {
   // get the value of the initials input field

@@ -106,6 +106,7 @@ Use this space to list resources you find helpful and would like to give credit 
 * [Document.getElementById()](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
 * [Logical AND (&&)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND)
 * [return](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return)
+* [15 Gorgeous CSS Text Animation Effects](https://alvarotrigo.com/blog/css-text-animations/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
