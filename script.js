@@ -1,3 +1,11 @@
+//TODO: High score showing up on screen
+//TODO: View high scores button not clickable on start screen
+//TODO: GOBACK BUTTON GOES TO QUESTION NOT START PAGE 
+//TODO: TIMER REMOVES TEN SECONDS IMMEDIATELY ON START
+//TODO: QUESTIONS NOT CYCLING
+//TODO: timer goes beyond 0
+//TODO: 
+
 //variables
 var score = 0;
 var initials1 = document.getElementById('initials')
@@ -54,6 +62,7 @@ var currentQIndex = 0; // keeps tabs on current question
 var currentQuestion = quizQuestions[currentQIndex];
 var time = questions.length * 10;
 
+//! This function starts the quiz
 function quizStart() {
   // Get the starting page element and hide it
   var startPage = document.getElementById('startingpage');
@@ -81,135 +90,182 @@ function quizStart() {
   nextQuestion(currentQIndex);
 }
 
+//! This function is responsible for displaying the next question. 
+// It takes in the current question index as a parameter
 function nextQuestion(currentQIndex) {
-  var currentQuestion = quizQuestions[currentQIndex];
-  var header1 = document.getElementById('header-question');
-  header1.textContent = currentQuestion.headerQuestion;
+// variable that gets the header element by id where the question will be displayed
+var header1 = document.getElementById('header-question');
 
-  options1.innerHTML = '';
+// sets the text content of the header element to the current question's header question
+header1.textContent = currentQuestion.headerQuestion;
 
-  for (var i = 0; i < currentQuestion.options.length; i++) {
+// clears all options on the page
+options1.innerHTML = '';
+
+// loops through the options of the current question
+for (var i = 0; i < currentQuestion.options.length; i++) {
+    // variable that holds the current option
     var option = currentQuestion.options[i];
+
+    // creates a new button element
     var optionButton = document.createElement('button');
+
+    // sets class and value attributes on the button element
     optionButton.setAttribute('class', 'option');
     optionButton.setAttribute('value', option);
 
+    // sets the text content of the button element to be the option number and option text
     optionButton.textContent = i + 1 + '. ' + option;
 
+    // appends the button element to the options element
     options1.appendChild(optionButton);
     console.log("click");
   }
 }
-
+//! This function function is handles the user's clicks on the answer options
 function clickQ(event) {
+  //get the value of the button clicked
   var btnS = event.target;
 
+  //check if the value of the button clicked is not equal to the correct answer
   if (btnS.value !== quizQuestions[currentQIndex].answer) {
-    // take time away
+    //decrease timeLeft by 10
     timeLeft -= 10;
-
+    // check if timeLeft is less than 0, set timeLeft to 0
     if (timeLeft < 0) {
       timeLeft = 0;
     }
-
+    //update the timer
     timer1.textContent = timeLeft;
-
+    //display wrong answer
     responsePrompt.textContent = 'Wrong Answer!';
   } else {
+    // display correct answer
     responsePrompt.textContent = 'Correct Answer!';
+    //increment score
     score++;
   }
 
+  // show response
   responsePrompt.setAttribute('class', 'response');
+  // hide response after 1 sec
   setTimeout(function () {
     responsePrompt.setAttribute('class', 'response hide');
   }, 1000);
-  // goes to next quesitons
+  
+  // increment currentQIndex
   currentQIndex++;
 
+  // check if time is up or all questions are answered
   if (time <= 0 || currentQIndex === quizQuestions.length) {
+    //clear interval
     clearInterval(timeLeft);
+    //go to final page
     allDone();
   } else {
+    //go to next question
     nextQuestion(currentQIndex);
     console.log("click");
   }
 
 }
-
+//! This function is called when the quiz is completed or the time runs out
 function allDone() {
+  //stops the time left countdown.
   clearInterval(timeLeft);
+  //gets the element with the id of alldone and assigns it to a variable allDonePage
   var allDonePage = document.getElementById('alldone');
+  //removes the class of hide from the element allDonePage. This will make the element visible on the webpage.
   allDonePage.removeAttribute('class', 'hide');
   // show score
   document.getElementById("scores").innerHTML = score;
+  //sets the text content of the score variable to be the value of the timeLeft variable
   score.textContent = timeLeft;
-
+//sets the class of q1 to be hide
   q1.setAttribute('class', 'hide');
   console.log("click");
 }
 
-//   // Timer
+//! Timer
 var clockTime = function () {
+  //decrement the time variable by 1
   time--;
+  //update the time displayed in the HTML
   timer1.innerText = time;
-
+  
+  // check if the time has run out
   if (time <= 0) {
-    allDone();
+  // if so, call the allDone function
+  allDone();
   }
-}
-
-function saveResults() {
+  }
+  //! This function stores results
+  function saveResults() {
+  // get the value of the initials input field
   var initialInput = initials1.value.trim();
-
+  
+  // check if the input field is not empty
   if (initialInput !== '') {
-    var highscores = JSON.parse(window.localStorage.getItem('highscores1')) || [];
-    var newHigh = {
-      score: score,
-      initials: initialInput,
-    }
-    highscores.push(newHigh);
-    window.localStorage.setItem('highscores1', JSON.stringify(highscores));
-    console.log("click");
-  }
-}
-// function checkEnter(event) {
-
-// }
-
-function showHighscores() {
-  var showScorePage = document.getElementById('highscores');
-  var allDonePage = document.getElementById('alldone')
-  allDonePage.setAttribute('class', 'hide');
-  showScorePage.removeAttribute('class');
-  // allDonePage.setAttribute('class', 'hide');
-  var highscoreList = document.getElementById('highscore1');
-  if (highscoreList) {
-    highscoreList.innerHTML = '';
-    // rest of the code
-  } else {
-    console.error("Element with id 'highscore1' not found on the page.")
-  }
+  // if not empty, get the highscores from local storage
   var highscores = JSON.parse(window.localStorage.getItem('highscores1')) || [];
-  highscores.sort((a, b) => b.score - a.score);
-  highscores.forEach(function (highscore) {
-    var li = document.createElement('li');
-    li.textContent = highscore.initials.toUpperCase() + " - " + highscore.score;
-    highscoreList.appendChild(li);
-    console.log("click");
-  });
-}
+  // create a new object to store the score and initials
+  var newHigh = {
+  score: score,
+  initials: initialInput,
+  }
+  // push the new highscore to the highscores array
+  highscores.push(newHigh);
+  // store the updated highscores array in local storage
+  window.localStorage.setItem('highscores1', JSON.stringify(highscores));
+  console.log("click");
+  }
+  }
+//! Shows Highscore results
+  function showHighscores() {
+    var showScorePage = document.getElementById('highscores');
+    var allDonePage = document.getElementById('alldone')
+    //hide allDone page
+    allDonePage.setAttribute('class', 'hide');
+    //remove hide class from highscores page
+    showScorePage.removeAttribute('class');
+    //allDonePage.setAttribute('class', 'hide');
+    var highscoreList = document.getElementById('highscore1');
+    //check if highscoreList element exists in the page
+    if (highscoreList) {
+      //clear any existing elements in the list
+      highscoreList.innerHTML = '';
+      // rest of the code
+    } else {
+      console.error("Element with id 'highscore1' not found on the page.")
+    }
+    //get highscores from local storage
+    var highscores = JSON.parse(window.localStorage.getItem('highscores1')) || [];
+    //sort highscores by score
+    highscores.sort((a, b) => b.score - a.score);
+    //iterate over each highscore
+    highscores.forEach(function (highscore) {
+      //create an li element
+      var li = document.createElement('li');
+      //set li text to initials and score
+      li.textContent = highscore.initials.toUpperCase() + " - " + highscore.score;
+      //append li to the list
+      highscoreList.appendChild(li);
+      console.log("click");
+    });
+  }
 
-//clears high scores
+//! clears highscores
 var highscoreList = document.getElementById('highscore1');
 var highscores = JSON.parse(window.localStorage.getItem('highscores1')) || [];
 var clearScores = function () {
+  //clear highscores array
   highscores = [];
-
+  //clear elements in the list
   while (highscoreList.firstChild) {
     highscoreList.removeChild(highscoreList.firstChild);
   }
 
+  //clear highscores from local storage
   localStorage.clear(highscores);
 
 } 
