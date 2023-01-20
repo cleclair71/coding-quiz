@@ -1,5 +1,6 @@
 //TODO: High score showing up on screen
 //TODO: saying right answer is wrong
+//Todo : wont go to alldone anymore after last question 
 
 //variables
 var score = 0;
@@ -60,13 +61,16 @@ var currentQuestion = quizQuestions[currentQIndex];
 // var time = questions.length * 10;
 var intervalid;
 
+
 function goBackToStart() {
   // Get the current page element and hide it
+  showScorePage.setAttribute('class', 'hide')
   var currentPage = document.getElementById('questiondivs');
   currentPage.setAttribute('class', 'hide');
    // Get the starting page element and remove the 'hide' class
    var startPage = document.getElementById('startingpage');
    startPage.removeAttribute('class');
+  
 
  }
 
@@ -101,37 +105,43 @@ function quizStart() {
 //! This function is responsible for displaying the next question. 
 // It takes in the current question index as a parameter
 function nextQuestion(currentQIndex) {
-  // increment currentQIndex
-  currentQIndex++;
-  // update currentQuestion
-  currentQuestion = quizQuestions[currentQIndex];
-// variable that gets the header element by id where the question will be displayed
-var header1 = document.getElementById('header-question');
+  // check if currentQIndex is less than the length of quizQuestions
+  if (currentQIndex < quizQuestions.length) {
+    // increment currentQIndex
+    currentQIndex++;
+    // update currentQuestion
+    var currentQuestion = quizQuestions[currentQIndex];
+    // variable that gets the header element by id where the question will be displayed
+    var header1 = document.getElementById('header-question');
 
-// sets the text content of the header element to the current question's header question
-header1.textContent = currentQuestion.headerQuestion;
+    // sets the text content of the header element to the current question's header question
+    header1.textContent = currentQuestion.headerQuestion;
 
-// clears all options on the page
-options1.innerHTML = '';
+    // clears all options on the page
+    options1.innerHTML = '';
 
-// loops through the options of the current question
-for (var i = 0; i < currentQuestion.options.length; i++) {
-    // variable that holds the current option
-    var option = currentQuestion.options[i];
+    // loops through the options of the current question
+    for (var i = 0; i < currentQuestion.options.length; i++) {
+        // variable that holds the current option
+        var option = currentQuestion.options[i];
 
-    // creates a new button element
-    var optionButton = document.createElement('button');
+        // creates a new button element
+        var optionButton = document.createElement('button');
 
-    // sets class and value attributes on the button element
-    optionButton.setAttribute('class', 'option');
-    optionButton.setAttribute('value', option);
+        // sets class and value attributes on the button element
+        optionButton.setAttribute('class', 'option');
+        optionButton.setAttribute('value', option);
 
-    // sets the text content of the button element to be the option number and option text
-    optionButton.textContent = i + 1 + '. ' + option;
+        // sets the text content of the button element to be the option number and option text
+        optionButton.textContent = i + 1 + '. ' + option;
 
-    // appends the button element to the options element
-    options1.appendChild(optionButton);
-    console.log("click");
+        // appends the button element to the options element
+        options1.appendChild(optionButton);
+        console.log("click");
+    }
+  } else {
+    // move to allDone function
+    allDone();
   }
 }
 //! This function function is handles the user's clicks on the answer options
