@@ -67,19 +67,17 @@ function goBackToStart() {
    // Get the starting page element and remove the 'hide' class
    var startPage = document.getElementById('startingpage');
    startPage.removeAttribute('class');
+
  }
 
 //! This function starts the quiz
 function quizStart() {
-  debugger;
   // Get the starting page element and hide it
   var startPage = document.getElementById('startingpage');
   startPage.setAttribute('class', 'hide');
-
+  showScorePage.setAttribute('class', 'hide');
   // Get the high score page element and hide it
-  if(!showScorePage.classList.contains("hide")){
-    showScorePage.setAttribute('class', 'hide');
-}
+
 
   // Get the question divs element and remove the 'hide' class
   q1.removeAttribute('class');
@@ -168,16 +166,15 @@ function clickQ(event) {
     responsePrompt.setAttribute('class', 'response hide');
   }, 1000);
 
-  // increment currentQIndex
-  currentQIndex++;
-
   // check if time is up or all questions are answered
   if (timeLeft <= 0 || currentQIndex === quizQuestions.length) {
     //clear interval
-    clearInterval(timeLeft);
+    clearInterval(intervalid);
     //go to final page
     allDone();
   } else {
+    // increment currentQIndex
+    currentQIndex++;
     //go to next question
     nextQuestion(currentQIndex);
     console.log("nextquestion");
@@ -188,8 +185,6 @@ function clickQ(event) {
 function allDone() {
   clearInterval(intervalid);
   var finalScore = score + timeLeft;
-  //stops the time left countdown.
-  // clearInterval(timeLeft);
   //gets the element with the id of alldone and assigns it to a variable allDonePage
   var allDonePage = document.getElementById('alldone');
   //removes the class of hide from the element allDonePage. This will make the element visible on the webpage.
