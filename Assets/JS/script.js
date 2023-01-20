@@ -66,12 +66,12 @@ function goBackToStart() {
   showScorePage.setAttribute('class', 'hide')
   var currentPage = document.getElementById('questiondivs');
   currentPage.setAttribute('class', 'hide');
-   // Get the starting page element and remove the 'hide' class
-   var startPage = document.getElementById('startingpage');
-   startPage.removeAttribute('class');
-  
-quizStart();
- }
+  // Get the starting page element and remove the 'hide' class
+  var startPage = document.getElementById('startingpage');
+  startPage.removeAttribute('class');
+
+  quizStart();
+}
 
 //! This function starts the quiz
 function quizStart() {
@@ -121,22 +121,22 @@ function nextQuestion(currentQIndex) {
 
     // loops through the options of the current question
     for (var i = 0; i < currentQuestion.options.length; i++) {
-        // variable that holds the current option
-        var option = currentQuestion.options[i];
+      // variable that holds the current option
+      var option = currentQuestion.options[i];
 
-        // creates a new button element
-        var optionButton = document.createElement('button');
+      // creates a new button element
+      var optionButton = document.createElement('button');
 
-        // sets class and value attributes on the button element
-        optionButton.setAttribute('class', 'option');
-        optionButton.setAttribute('value', option);
+      // sets class and value attributes on the button element
+      optionButton.setAttribute('class', 'option');
+      optionButton.setAttribute('value', option);
 
-        // sets the text content of the button element to be the option number and option text
-        optionButton.textContent = i + 1 + '. ' + option;
+      // sets the text content of the button element to be the option number and option text
+      optionButton.textContent = i + 1 + '. ' + option;
 
-        // appends the button element to the options element
-        options1.appendChild(optionButton);
-        console.log("click");
+      // appends the button element to the options element
+      options1.appendChild(optionButton);
+      console.log("click");
     }
   } else {
     // move to allDone function
@@ -162,7 +162,7 @@ function clickQ(event) {
     //display wrong answer
     responsePrompt.textContent = 'Wrong Answer!';
     console.log("w");
-  } 
+  }
   else {
     // display correct answer
     responsePrompt.textContent = 'Correct Answer!';
@@ -217,60 +217,60 @@ function clockTime() {
   timeLeft--;
   timer1.textContent = timeLeft;
 }
-  //! This function stores results
-  function saveResults() {
+//! This function stores results
+function saveResults() {
   // get the value of the initials input field
   var initialInput = initials1.value.trim();
-  
+
   // check if the input field is not empty
   if (initialInput !== '') {
-  // if not empty, get the highscores from local storage
-  var highscores = JSON.parse(window.localStorage.getItem('highscores1')) || [];
-  // create a new object to store the score and initials
-  var newHigh = {
-  score: score,
-  initials: initialInput,
-  }
-  // push the new highscore to the highscores array
-  highscores.push(newHigh);
-  // store the updated highscores array in local storage
-  window.localStorage.setItem('highscores1', JSON.stringify(highscores));
-  console.log("click");
-  }
-  }
-//! Shows Highscore results
-  function showHighscores() {
-    var showScorePage = document.getElementById('highscores');
-    var allDonePage = document.getElementById('alldone')
-    //hide allDone page
-    allDonePage.setAttribute('class', 'hide');
-    //remove hide class from highscores page
-    showScorePage.removeAttribute('class');
-    //allDonePage.setAttribute('class', 'hide');
-    var highscoreList = document.getElementById('highscore1');
-    //check if highscoreList element exists in the page
-    if (highscoreList) {
-      //clear any existing elements in the list
-      highscoreList.innerHTML = '';
-      // rest of the code
-    } else {
-      console.error("Element with id 'highscore1' not found on the page.")
-    }
-    //get highscores from local storage
+    // if not empty, get the highscores from local storage
     var highscores = JSON.parse(window.localStorage.getItem('highscores1')) || [];
-    //sort highscores by score
-    highscores.sort((a, b) => b.score - a.score);
-    //iterate over each highscore
-    highscores.forEach(function (highscore) {
-      //create an li element
-      var li = document.createElement('li');
-      //set li text to initials and score
-      li.textContent = highscore.initials.toUpperCase() + " - " + highscore.score;
-      //append li to the list
-      highscoreList.appendChild(li);
-      console.log("click");
-    });
+    // create a new object to store the score and initials
+    var newHigh = {
+      score: score,
+      initials: initialInput,
+    }
+    // push the new highscore to the highscores array
+    highscores.push(newHigh);
+    // store the updated highscores array in local storage
+    window.localStorage.setItem('highscores1', JSON.stringify(highscores));
+    console.log("click");
   }
+}
+//! Shows Highscore results
+function showHighscores() {
+  var showScorePage = document.getElementById('highscores');
+  var allDonePage = document.getElementById('alldone')
+  //hide allDone page
+  allDonePage.setAttribute('class', 'hide');
+  //remove hide class from highscores page
+  showScorePage.removeAttribute('class');
+  //allDonePage.setAttribute('class', 'hide');
+  var highscoreList = document.getElementById('highscore1');
+  //check if highscoreList element exists in the page
+  if (highscoreList) {
+    //clear any existing elements in the list
+    highscoreList.innerHTML = '';
+    // rest of the code
+  } else {
+    console.error("Element with id 'highscore1' not found on the page.")
+  }
+  //get highscores from local storage
+  var highscores = JSON.parse(window.localStorage.getItem('highscores1')) || [];
+  //sort highscores by score
+  highscores.sort((a, b) => b.score - a.score);
+  //iterate over each highscore
+  highscores.forEach(function (highscore) {
+    //create an li element
+    var li = document.createElement('li');
+    //set li text to initials and score
+    li.textContent = highscore.initials.toUpperCase() + " - " + highscore.score;
+    //append li to the list
+    highscoreList.appendChild(li);
+    console.log("click");
+  });
+}
 
 //! clears highscores
 var highscoreList = document.getElementById('highscore1');
@@ -286,7 +286,7 @@ var clearScores = function () {
   //clear highscores from local storage
   localStorage.clear(highscores);
 
-} 
+}
 
 showHighscores()
 

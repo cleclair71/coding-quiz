@@ -1,32 +1,33 @@
 /* View High Scores */
 
-* 
-  :root {
+* :root {
     --primary: #0a0808c5;
     --secondary: #750891;
     --tertiary: rgb(228, 55, 153);
     --white: rgb(255, 255, 255);
     font-size: 62.5%;
-  }
+}
 
-  body {
+body {
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     padding: 20px;
-      flex-direction: column;
-      width: 50%;
-      margin: auto;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-  }
+}
 
-  @keyframes gradient {
+@keyframes gradient {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
@@ -34,7 +35,7 @@
 
 header {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     position: relative;
 }
 
@@ -60,8 +61,8 @@ header {
 
 .timer {
     font-size: 2.0rem;
-      color: var(--primary);
-      align-self: flex-start;
+    color: var(--primary);
+    align-self: flex-start;
 }
 
 h1 {
@@ -69,78 +70,79 @@ h1 {
     font-size: 3.0rem;
     font-weight: bold;
     text-align: center;
-    background-image: linear-gradient(
-        -225deg,
-        #231557 0%,
-        #44107a 29%,
-        #ff1361 67%,
-        #fff800 100%
-      );
-      background-size: auto auto;
-      background-clip: border-box;
-      background-size: 200% auto;
-      color: #fff;
-      background-clip: text;
-      text-fill-color: transparent;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: textclip 2s linear infinite;
-          font-size: 3.0rem;
+    background-image: linear-gradient(-225deg,
+            #231557 0%,
+            #44107a 29%,
+            #ff1361 67%,
+            #fff800 100%);
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 2s linear infinite;
+    font-size: 3.0rem;
 }
 
 @keyframes textclip {
     to {
-      background-position: 200% center;
+        background-position: 200% center;
     }
-  }
+}
+
 .quizcontent {
     border: 2px solid black;
     box-sizing: border-box;
     padding: 30px;
     background-color: #FFFFFF;
 }
+
 /* starting page */
 .startingpage {
     align-items: center;
     text-align: center;
-    
+
 }
 
 p {
     color: var(--primary);
     font-size: 2.0rem;
-    
+
 }
+
 #question-divs {
     align-items: flex-start;
     justify-content: flex-start;
     padding: 40px 20px;
     margin: auto;
-  }
+}
 
 button {
     background-color: initial;
-      background-image: linear-gradient(rgba(182, 115, 212, 0.84), rgba(57, 31, 91, .84) 50%);
-      border-radius: 42px;
-      border-width: 0;
-      box-shadow: rgba(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px;
-      color: #FFFFFF;
-      cursor: pointer;
-      display: flex;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 2.0vw;
-      font-weight: 700;
-      justify-content: center;
-      letter-spacing: .04em;
-      line-height: 16px;
-      margin: 6px;
-      padding: 18px 18px;
-      text-align: center;
-      text-decoration: none;
-      text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgba(255, 255, 255, 0.2) 0 0 12px,rgba(57, 31, 91, 0.6) 1px 1px 4px,rgba(57, 31, 91, 0.32) 4px 4px 16px;
-      user-select: none;
-      touch-action: manipulation;
-      vertical-align: baseline;
+    background-image: linear-gradient(rgba(182, 115, 212, 0.84), rgba(57, 31, 91, .84) 50%);
+    border-radius: 42px;
+    border-width: 0;
+    box-shadow: rgba(57, 31, 91, 0.24) 0 2px 2px, rgba(179, 132, 201, 0.4) 0 8px 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.0vw;
+    font-weight: 700;
+    justify-content: center;
+    letter-spacing: .04em;
+    line-height: 16px;
+    margin: 6px;
+    padding: 18px 18px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px, rgba(255, 255, 255, 0.2) 0 0 12px, rgba(57, 31, 91, 0.6) 1px 1px 4px, rgba(57, 31, 91, 0.32) 4px 4px 16px;
+    user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
 }
 
 button:hover {
@@ -150,13 +152,13 @@ button:hover {
 #start-timer-btn {
     margin-top: 15px;
     margin: auto;
-    }
+}
 
 #question-divs button {
     display: grid;
-      grid-template-rows: repeat(4, auto);
-      grid-gap: 5px;
-      margin: 20px 0;
+    grid-template-rows: repeat(4, auto);
+    grid-gap: 5px;
+    margin: 20px 0;
 }
 
 #response {
@@ -170,21 +172,23 @@ button:hover {
     text-align: center;
     padding-top: 5px;
 }
+
 /* High scores */
 #high-score {
     text-align: left;
 }
 
 #highscore1 {
-    margin:10%;
+    margin: 10%;
 }
+
 ol {
     list-style-type: number;
- }
+}
 
- li:nth-child(odd) {
-     background-color: rgba(228, 151, 164, 0.5);;
- }
+li:nth-child(odd) {
+    background-color: rgba(228, 151, 164, 0.5);
+}
 
 
 li {
@@ -192,8 +196,8 @@ li {
 }
 
 footer {
-   font-size: 10px
-    width: 100%;
+    
+    font-size: 10px width: 100%;
     bottom: 0;
     text-align: center;
 }
@@ -224,6 +228,7 @@ footer {
     .highscores {
         font-size: 0.8rem;
     }
+
     .timer {
         font-size: 0.8rem;
     }
