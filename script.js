@@ -1,10 +1,5 @@
 //TODO: High score showing up on screen
-//TODO: View high scores button not clickable on start screen
-//TODO: GOBACK BUTTON GOES TO QUESTION NOT START PAGE 
-//TODO: TIMER REMOVES TEN SECONDS IMMEDIATELY ON START
-//TODO: QUESTIONS NOT CYCLING
-//TODO: timer goes beyond 0
-//TODO: 
+//TODO: saying right answer is wrong
 
 //variables
 var score = 0;
@@ -22,6 +17,7 @@ var hsBtn = document.getElementById('hs-btn')
 var timer1 = document.getElementById('time');
 var initialTime = 60;
 var timeLeft = initialTime;
+var finalScore = score + timeLeft;
 
 
 
@@ -64,6 +60,15 @@ var currentQuestion = quizQuestions[currentQIndex];
 // var time = questions.length * 10;
 var intervalid;
 
+function goBackToStart() {
+  // Get the current page element and hide it
+  var currentPage = document.getElementById('questiondivs');
+  currentPage.setAttribute('class', 'hide');
+   // Get the starting page element and remove the 'hide' class
+   var startPage = document.getElementById('startingpage');
+   startPage.removeAttribute('class');
+ }
+
 //! This function starts the quiz
 function quizStart() {
   debugger;
@@ -72,7 +77,9 @@ function quizStart() {
   startPage.setAttribute('class', 'hide');
 
   // Get the high score page element and hide it
-  showScorePage.setAttribute('class', 'hide');
+  if(!showScorePage.classList.contains("hide")){
+    showScorePage.setAttribute('class', 'hide');
+}
 
   // Get the question divs element and remove the 'hide' class
   q1.removeAttribute('class');
@@ -96,6 +103,10 @@ function quizStart() {
 //! This function is responsible for displaying the next question. 
 // It takes in the current question index as a parameter
 function nextQuestion(currentQIndex) {
+  // increment currentQIndex
+  currentQIndex++;
+  // update currentQuestion
+  currentQuestion = quizQuestions[currentQIndex];
 // variable that gets the header element by id where the question will be displayed
 var header1 = document.getElementById('header-question');
 
@@ -142,7 +153,8 @@ function clickQ(event) {
     timer1.textContent = timeLeft;
     //display wrong answer
     responsePrompt.textContent = 'Wrong Answer!';
-  } else {
+  } 
+  else {
     // display correct answer
     responsePrompt.textContent = 'Correct Answer!';
     //increment score
@@ -152,10 +164,10 @@ function clickQ(event) {
   // show response
   responsePrompt.setAttribute('class', 'response');
   // hide response after 1 sec
-  // setTimeout(function () {
-  //   responsePrompt.setAttribute('class', 'response hide');
-  // }, 1000);
-  
+  setTimeout(function () {
+    responsePrompt.setAttribute('class', 'response hide');
+  }, 1000);
+
   // increment currentQIndex
   currentQIndex++;
 
@@ -170,22 +182,21 @@ function clickQ(event) {
     nextQuestion(currentQIndex);
     console.log("nextquestion");
   }
-
 }
+
 //! This function is called when the quiz is completed or the time runs out
 function allDone() {
+  clearInterval(intervalid);
+  var finalScore = score + timeLeft;
   //stops the time left countdown.
   // clearInterval(timeLeft);
   //gets the element with the id of alldone and assigns it to a variable allDonePage
   var allDonePage = document.getElementById('alldone');
   //removes the class of hide from the element allDonePage. This will make the element visible on the webpage.
   allDonePage.removeAttribute('class', 'hide');
-  // show score
-  document.getElementById("scores").innerHTML = score;
-  //sets the text content of the score variable to be the value of the timeLeft variable
-  score.textContent = timeLeft + score;
-//sets the class of q1 to be hide
   q1.setAttribute('class', 'hide');
+  // show score
+  document.getElementById("scores").textContent = "Your final score is: " + finalScore;
   console.log("click");
 }
 
@@ -287,7 +298,7 @@ submit1.addEventListener('click', function () {
 });
 
 //Go back button
-goBack.addEventListener("click", quizStart);
+goBack.addEventListener("click", goBackToStart);
 //clear scores button
 clearBtn.addEventListener("click", clearScores);
 
