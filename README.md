@@ -3,7 +3,7 @@
 
 <!-- PROJECT LOGO -->
 
-  <h3 align="center">Random Password Generator</h3>
+  <h3 align="center">Code Quiz!</h3>
 
 <!-- TABLE OF CONTENTS -->
 <details>
