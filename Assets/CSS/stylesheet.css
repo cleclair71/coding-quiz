@@ -191,6 +191,13 @@ li {
     font-size: 4.0vw;
 }
 
+footer {
+   font-size: 10px
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}
+
 /* media query for smaller screens */
 
 @media screen and (max-width: 1024px) {

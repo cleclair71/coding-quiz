@@ -1,6 +1,5 @@
 //TODO: High score showing up on screen
-//TODO: saying right answer is wrong
-//Todo : wont go to alldone anymore after last question 
+//TODO: saying right answer is wrong 
 
 //variables
 var score = 0;
@@ -71,7 +70,7 @@ function goBackToStart() {
    var startPage = document.getElementById('startingpage');
    startPage.removeAttribute('class');
   
-
+quizStart();
  }
 
 //! This function starts the quiz
@@ -146,6 +145,7 @@ function nextQuestion(currentQIndex) {
 }
 //! This function function is handles the user's clicks on the answer options
 function clickQ(event) {
+  console.log("clickq");
   //get the value of the button clicked
   var btnS = event.target;
 
@@ -161,10 +161,12 @@ function clickQ(event) {
     timer1.textContent = timeLeft;
     //display wrong answer
     responsePrompt.textContent = 'Wrong Answer!';
+    console.log("w");
   } 
   else {
     // display correct answer
     responsePrompt.textContent = 'Correct Answer!';
+    console.log("c");
     //increment score
     score++;
   }
